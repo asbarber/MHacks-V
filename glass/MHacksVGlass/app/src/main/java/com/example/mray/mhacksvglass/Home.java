@@ -1,17 +1,22 @@
 package com.example.mray.mhacksvglass;
 
+import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+
+import com.example.mray.mhacksvglass.temp.linkedinapistuff;
 import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
 import com.google.android.glass.widget.CardScrollView;
 
-import android.app.Activity;
-import android.content.Context;
-import android.media.AudioManager;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
+import java.util.ArrayList;
 
 /**
  * An {@link Activity} showing a tuggable "Hello World!" card.
@@ -40,6 +45,7 @@ public class Home extends Activity {
         super.onCreate(bundle);
 
         mView = buildView();
+
 
         mCardScroller = new CardScrollView(this);
         mCardScroller.setAdapter(new CardScrollAdapter() {
@@ -76,13 +82,37 @@ public class Home extends Activity {
             }
         });
         setContentView(mCardScroller);
+
+        linkedinapistuff butt = new linkedinapistuff();
+        butt.getData();
     }
+
+
+
 
     @Override
     protected void onResume() {
         super.onResume();
         mCardScroller.activate();
+
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            ArrayList<String> voiceResults = getIntent().getExtras()
+                    .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+
+            Log.d("poop", voiceResults.get(0));
+
+//            VenmoTransfer obj = new VenmoTransfer();
+//            Intent intent = obj.startTransfer("248-882-9005", 0.01, true);
+//            String url = intent.getExtras().getString("url");
+//
+//            Log.d("asdf", url);
+//
+//            Intent i = new Intent(Intent.ACTION_VIEW);
+//            i.setData(Uri.parse(url));
+//            startActivity(i);
+        }
     }
+
 
     @Override
     protected void onPause() {
@@ -94,9 +124,14 @@ public class Home extends Activity {
      * Builds a Glass styled "Hello World!" view using the {@link CardBuilder} class.
      */
     private View buildView() {
-        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.TEXT);
+        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
+        card.setFootnote(R.string.footnote);
 
-        card.setText(R.string.hello_world);
+        card.setText(R.string.send);
+//        card.setTimestamp(voiceResults.get(0));
+        card.setHeading(R.string.firstname_lastname);
+        card.setSubheading(R.string.transaction_type);
+        card.setIcon(R.drawable.ic_glass_logo);
         return card.getView();
     }
 

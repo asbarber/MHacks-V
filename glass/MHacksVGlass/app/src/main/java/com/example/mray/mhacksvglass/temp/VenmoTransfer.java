@@ -1,4 +1,4 @@
-package com.example.mray.mhacksvglass.venmo;
+package com.example.mray.mhacksvglass.temp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,13 +16,15 @@ public class VenmoTransfer {
      * @param amount value for the transaction
      * @param pay true if the caller is paying money, false if the caller is receiving money
      */
-    public void startTransfer(Context c, String user_id, double amount, boolean pay){
-        if (!VenmoLibrary.isVenmoInstalled(c)){
-            return;
-        }
+    public Intent startTransfer(String user_id, double amount, boolean pay){
+
+        //if (!VenmoLibrary.isVenmoInstalled(c)){
+          //  return;
+      //  }
 
         String payType = pay ? "pay" : "charge";
         Intent intent = VenmoLibrary.openVenmoPayment("2265", "MHacks", user_id, Double.toString(amount), "MHacks", payType);
-        c.startActivity(intent);
+        return intent;
+
     }
 }

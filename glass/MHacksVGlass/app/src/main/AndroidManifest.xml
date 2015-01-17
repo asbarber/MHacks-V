@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.mray.mhacksvglass.Home"
-            android:icon="@drawable/ic_glass_logo"
+            android:icon="@drawable/mhacks_logo"
             android:label="@string/title_activity_home" >
             <intent-filter>
                 <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />

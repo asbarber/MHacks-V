@@ -1,5 +1,5 @@
 
-package com.example.mray.mhacksvglass.venmo;
+package com.example.mray.mhacksvglass.temp;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,9 +10,7 @@ import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.json.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -113,7 +111,8 @@ public class VenmoLibrary {
             //json decode data
             data = base64_url_decode(payload);
             try {
-                JSONArray response = (JSONArray) JSONValue.parse(data);
+                JSONObject mainObj = new JSONObject();
+                JSONArray response = (JSONArray) mainObj.getJSONArray(data);
 
                 JSONObject obj = (JSONObject) response.get(0);
 
