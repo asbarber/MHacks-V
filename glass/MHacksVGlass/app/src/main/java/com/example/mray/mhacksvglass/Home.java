@@ -2,7 +2,9 @@ package com.example.mray.mhacksvglass;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.example.mray.mhacksvglass.temp.VenmoTransfer;
 import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
@@ -89,10 +92,23 @@ public class Home extends Activity {
     protected void onResume() {
         super.onResume();
         mCardScroller.activate();
-        ArrayList<String> voiceResults = getIntent().getExtras()
-                .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
 
-        Log.d("poop", voiceResults.get(0));
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            ArrayList<String> voiceResults = getIntent().getExtras()
+                    .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+
+            Log.d("poop", voiceResults.get(0));
+
+            VenmoTransfer obj = new VenmoTransfer();
+            Intent intent = obj.startTransfer("248-882-9005", 0.01, true);
+            String url = intent.getExtras().getString("url");
+
+            Log.d("asdf", url);
+
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        }
     }
 
     @Override
@@ -106,7 +122,8 @@ public class Home extends Activity {
      */
     private View buildView() {
         CardBuilder card = new CardBuilder(this, CardBuilder.Layout.TEXT);
-
+        card.setFootnote(R.string.footnote);
+        //card.setTimestamp(voiceResults.get(0));
         card.setText(R.string.send);
         return card.getView();
     }
