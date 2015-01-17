@@ -16,15 +16,20 @@ public class DatabaseManager {
 
     private Firebase firebaseRef;
     private Activity activity;
+    private int counter;
 
     public DatabaseManager(Activity activity) {
+        counter = 0;
         this.activity = activity;
         firebaseRef = new Firebase("https://mhacksv.firebaseio.com/");
         firebaseRef.child("GlassInit").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                startGlass();
-                firebaseRef.child("GlassInit").setValue(false);
+                if (counter > 0) {
+                    startGlass();
+                    firebaseRef.child("GlassInit").setValue(false);
+                } else
+                    counter++;
             }
 
             @Override
@@ -36,7 +41,7 @@ public class DatabaseManager {
         //Intent intent = new Intent(activity, VoiceMenuActivity.class);
         //activity.startActivity(intent);
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "ok glass, here's my prompt" );
+        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume" );
         activity.startActivityForResult(intent, 0);
     }
 

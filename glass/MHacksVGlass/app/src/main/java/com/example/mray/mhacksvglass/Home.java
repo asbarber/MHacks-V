@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 
+import com.firebase.client.Firebase;
 import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
@@ -45,6 +46,7 @@ public class Home extends Activity {
         super.onCreate(bundle);
 
         mView = buildView();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mCardScroller = new CardScrollView(this);
@@ -82,6 +84,8 @@ public class Home extends Activity {
             }
         });
         setContentView(mCardScroller);
+        Firebase.setAndroidContext(this);
+        DatabaseManager db = new DatabaseManager(this);
 
 //        linkedinapistuff butt = new linkedinapistuff();
 //        butt.getData();
