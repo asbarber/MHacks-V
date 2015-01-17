@@ -5,7 +5,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -48,7 +47,7 @@ public class Home extends Activity {
         mView = buildView();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mCardScroller = new CardScrollView(this);
         mCardScroller.setAdapter(new CardScrollAdapter() {
             @Override
@@ -85,10 +84,7 @@ public class Home extends Activity {
         });
         setContentView(mCardScroller);
         Firebase.setAndroidContext(this);
-        DatabaseManager db = new DatabaseManager(this);
 
-//        linkedinapistuff butt = new linkedinapistuff();
-//        butt.getData();
     }
 
 
@@ -99,21 +95,12 @@ public class Home extends Activity {
         super.onResume();
         mCardScroller.activate();
 
+        DatabaseManager db = new DatabaseManager(this);
+
         if (getIntent() != null && getIntent().getExtras() != null) {
             ArrayList<String> voiceResults = getIntent().getExtras()
                     .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
 
-            Log.d("poop", voiceResults.get(0));
-
-//            VenmoTransfer obj = new VenmoTransfer();
-//            Intent intent = obj.startTransfer("248-882-9005", 0.01, true);
-//            String url = intent.getExtras().getString("url");
-//
-//            Log.d("asdf", url);
-//
-//            Intent i = new Intent(Intent.ACTION_VIEW);
-//            i.setData(Uri.parse(url));
-//            startActivity(i);
         }
     }
 

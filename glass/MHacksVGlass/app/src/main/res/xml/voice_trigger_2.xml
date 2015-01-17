@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- For more information about voice trigger, check out: https://developers.google.com/glass/develop/gdk/starting-glassware -->
-<trigger command="CHECK_IT_OUT" >
-    <input prompt="@string/amount_prompt" />
-</trigger>
