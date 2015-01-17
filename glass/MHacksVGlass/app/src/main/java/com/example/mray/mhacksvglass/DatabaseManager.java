@@ -2,6 +2,7 @@ package com.example.mray.mhacksvglass;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.speech.RecognizerIntent;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -32,8 +33,11 @@ public class DatabaseManager {
     }
 
     private void startGlass() {
-        Intent intent = new Intent(activity, VoiceMenuActivity.class);
-        activity.startActivity(intent);
+        //Intent intent = new Intent(activity, VoiceMenuActivity.class);
+        //activity.startActivity(intent);
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "ok glass, here's my prompt" );
+        activity.startActivityForResult(intent, 0);
     }
 
 }
