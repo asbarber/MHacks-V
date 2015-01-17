@@ -26,7 +26,6 @@ public class Home extends ActionBarActivity {
         initHub();
         setupEventListener();
 
-        Intent venmoIntent = new VenmoActivity().work();
         startActivityForResult(venmoIntent, 0);
     }
 
@@ -59,23 +58,13 @@ public class Home extends ActionBarActivity {
     }
 
     public void sendVenmo(View view) {
-        //Intent venmoIntent = VenmoLibrary.openVenmoPayment("2265", "MHacks", "145434160922624933", "1.00", "MHacks", "pay");
-        Intent venmoIntent = new VenmoActivity().transfer("145434160922624933", 0.01);
+        Intent venmoIntent = new VenmoActivity().transfer(MyoListener.payer_access_token, MyoListener.payee_access_token, 0.01);
         startActivityForResult(venmoIntent, 0);// REQUEST_CODE_VENMO_APP_SWITCH);
     }
 
     private void setupEventListener() {
         myoListener = new MyoListener(this);
         hub.addListener(myoListener);
-
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent){
-        Uri uri = intent.getData();
-        if (uri != null && uri.toString().startsWith("myo://oauthresponse")){
-            VenmoActivity.access_token = uri.getQueryParameter("access_token");
-        }
     }
 
     @Override

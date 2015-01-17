@@ -9,23 +9,19 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.example.mray.mhacksv.MyoListener;
+
 /**
  * Created by Aaron Barber on 17/01/15.
  */
 public class VenmoActivity {
 
-    public static String access_token = "";
-
-    public Intent authenticate(){
-        String venmo_uri = "https://api.venmo.com/v1/oauth/authorize?client_id=2265&scope=make_payments&redirect_uri=myo&response_type=code";
-        return new Intent(Intent.ACTION_VIEW, Uri.parse(venmo_uri));
-    }
-
-    public Intent transfer(String user_id, double amount){
+    public Intent transfer(String payer, String payee, double amount){
         String venmo_uri = "https://api.venmo.com/v1/payments" +
-                "?access_token=" + access_token +
-                "&user_id=" + user_id +
-                "&amount=" + Double.toString(amount);
+                "?access_token=" + payer +
+                "&user_id=" + payee +
+                "&amount=" + Double.toString(-1*Math.abs(amount)) +
+                "&note=" + "MHacks";
 
         return new Intent(Intent.ACTION_VIEW, Uri.parse(venmo_uri));
     }
