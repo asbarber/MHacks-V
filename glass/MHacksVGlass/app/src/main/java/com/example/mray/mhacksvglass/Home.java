@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.example.mray.mhacksvglass.temp.linkedinapistuff;
 import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
@@ -83,8 +82,8 @@ public class Home extends Activity {
         });
         setContentView(mCardScroller);
 
-        linkedinapistuff butt = new linkedinapistuff();
-        butt.getData();
+//        linkedinapistuff butt = new linkedinapistuff();
+//        butt.getData();
     }
 
 

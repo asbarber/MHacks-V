@@ -11,4 +11,8 @@
     <string name="firstname_lastname">Sean Acker</string>
     <string name="transaction_type">Handshake Established</string>
 
+    // Voice menu values
+    <string name="menu_banking">Banking Transaction</string>
+    <string name="menu_network">Networking Transaction</string>
+    <string name="menu_venmo">Venmo Transaction</string>
 </resources>
