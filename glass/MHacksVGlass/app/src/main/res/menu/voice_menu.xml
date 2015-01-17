@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <!-- Venmo related option -->
@@ -13,11 +13,21 @@
             android:title="@string/menu_network"
             />
 
-        <!-- Banking? -->
+        // Banking?
         <item
             android:id="@+id/menu_banking"
             android:title="@string/menu_banking"
             />
-    </menu>
 
-</menu>
+        //Resume?
+        <item
+            android:id="@+id/menu_resume"
+            android:title="@string/menu_resume"
+            />
+
+            Resume?
+        <item
+            android:id="@+id/menu_butt"
+            android:title="@string/menu_butt"
+        />
+    </menu>
