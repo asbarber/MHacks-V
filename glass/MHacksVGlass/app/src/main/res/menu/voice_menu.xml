@@ -13,9 +13,21 @@
             android:title="@string/menu_network"
             />
 
-        <!-- Banking? -->
-        <!--<item-->
-            <!--android:id="@+id/menu_banking"-->
-            <!--android:title="@string/menu_banking"-->
-            <!--/>-->
+        // Banking?
+        <item
+            android:id="@+id/menu_banking"
+            android:title="@string/menu_banking"
+            />
+
+        //Resume?
+        <item
+            android:id="@+id/menu_resume"
+            android:title="@string/menu_resume"
+            />
+
+            Resume?
+        <item
+            android:id="@+id/menu_butt"
+            android:title="@string/menu_butt"
+        />
     </menu>

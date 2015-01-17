@@ -8,6 +8,7 @@ import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 
 import com.firebase.client.Firebase;
@@ -45,6 +46,7 @@ public class Home extends Activity {
         super.onCreate(bundle);
 
         mView = buildView();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
         mCardScroller = new CardScrollView(this);
