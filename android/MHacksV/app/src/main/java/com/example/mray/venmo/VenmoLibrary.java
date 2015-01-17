@@ -75,7 +75,7 @@ public class VenmoLibrary {
         venmo_uri += "&using_new_sdk=true";
 
         venmo_uri = venmo_uri.replaceAll("\\+", "%20"); // use %20 encoding instead of +
-
+        Log.d("poop",Uri.parse(venmo_uri).toString());
         return new Intent(Intent.ACTION_VIEW, Uri.parse(venmo_uri));
     }
 
