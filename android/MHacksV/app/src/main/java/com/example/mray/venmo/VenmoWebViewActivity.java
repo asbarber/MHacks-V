@@ -10,6 +10,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
+import com.example.mray.mhacksv.R;
 
 public class VenmoWebViewActivity extends Activity {
 
