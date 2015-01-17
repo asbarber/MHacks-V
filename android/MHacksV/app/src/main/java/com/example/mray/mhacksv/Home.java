@@ -1,6 +1,6 @@
 package com.example.mray.mhacksv;
 
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -51,7 +51,8 @@ public class Home extends ActionBarActivity {
     }
 
     public void sendVenmo(View view) {
-        new VenmoActivity().transfer(MyoListener.payer_access_token, MyoListener.payee_access_token, 0.01);
+        refresh task = new refresh();
+        task.execute();
         //startActivityForResult(venmoIntent, 0);
     }
 
@@ -81,5 +82,22 @@ public class Home extends ActionBarActivity {
     protected void onDestroy() {
         hub.removeListener(myoListener);
         super.onDestroy();
+    }
+
+    private class refresh extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void...params) {
+            VenmoActivity vm = new VenmoActivity();
+            vm.transfer(MyoListener.payer_access_token, MyoListener.payee_access_token, 0.01);
+            return null;
+        }
+        protected void onProgressUpdate(Void...progress) {
+
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+        }
     }
 }
