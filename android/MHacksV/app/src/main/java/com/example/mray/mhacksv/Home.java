@@ -51,8 +51,8 @@ public class Home extends ActionBarActivity {
     }
 
     public void sendVenmo(View view) {
-        Intent venmoIntent = new VenmoActivity().transfer(MyoListener.payer_access_token, MyoListener.payee_access_token, 0.01);
-        startActivityForResult(venmoIntent, 0);// REQUEST_CODE_VENMO_APP_SWITCH);
+        new VenmoActivity().transfer(MyoListener.payer_access_token, MyoListener.payee_access_token, 0.01);
+        //startActivityForResult(venmoIntent, 0);
     }
 
     private void setupEventListener() {
