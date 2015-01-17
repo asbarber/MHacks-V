@@ -1,19 +1,13 @@
 package com.example.mray.venmo;
 
-import android.content.Intent;
-import android.net.Uri;
-
-import com.example.mray.mhacksv.MyoListener;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by Aaron Barber on 17/01/15.
@@ -27,6 +21,7 @@ public class VenmoActivity {
                 "&amount=" + Double.toString(-1*Math.abs(amount)) +
                 "&note=" + "MHacks";
 
+        Log.d("poop",venmo_uri);
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost post = new HttpPost(venmo_uri);
