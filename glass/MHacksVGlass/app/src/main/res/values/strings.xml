@@ -4,5 +4,7 @@
     <string name="app_name">MHacksVGlass</string>
     <string name="title_activity_home">Myo Details</string>
     <string name="hello_world">Hello world!</string>
+    <string name="send">Transaction Initiated</string>
+    <string name="amount_prompt">How Much?</string>
 
 </resources>

@@ -1,17 +1,21 @@
 package com.example.mray.mhacksvglass;
 
+import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+
 import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
 import com.google.android.glass.widget.CardScrollView;
 
-import android.app.Activity;
-import android.content.Context;
-import android.media.AudioManager;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
+import java.util.ArrayList;
 
 /**
  * An {@link Activity} showing a tuggable "Hello World!" card.
@@ -78,10 +82,17 @@ public class Home extends Activity {
         setContentView(mCardScroller);
     }
 
+
+
+
     @Override
     protected void onResume() {
         super.onResume();
         mCardScroller.activate();
+        ArrayList<String> voiceResults = getIntent().getExtras()
+                .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+
+        Log.d("poop", voiceResults.get(0));
     }
 
     @Override
@@ -96,7 +107,7 @@ public class Home extends Activity {
     private View buildView() {
         CardBuilder card = new CardBuilder(this, CardBuilder.Layout.TEXT);
 
-        card.setText(R.string.hello_world);
+        card.setText(R.string.send);
         return card.getView();
     }
 
