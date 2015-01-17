@@ -1,5 +1,7 @@
 package com.example.mray.mhacksv;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -37,6 +39,17 @@ public class Home extends ActionBarActivity {
         hub.setLockingPolicy(Hub.LockingPolicy.NONE);
         hub.setMyoAttachAllowance(2);
         return;
+    }
+
+    private void connectBluetooth() {
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null) {
+            //Device does not support Bluetooth
+        }
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
+        }
     }
 
     public void connect1(View view) {

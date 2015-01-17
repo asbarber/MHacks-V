@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">My Application</string>
-    <string name="title_activity_home_detail">MyoInfo</string>
-    <string name="hello_world">Hello world!</string>
-
-</resources>
