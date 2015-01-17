@@ -14,7 +14,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <data android:scheme="myo" android:host="oauthresponse" />
             </intent-filter>
         </activity>
         // Required for communicating with the Myo device

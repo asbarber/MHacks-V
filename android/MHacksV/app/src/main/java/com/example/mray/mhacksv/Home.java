@@ -1,16 +1,13 @@
 package com.example.mray.mhacksv;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.mray.venmo.VenmoActivity;
-import com.example.mray.venmo.VenmoLibrary;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
 
@@ -26,19 +23,14 @@ public class Home extends ActionBarActivity {
         initHub();
         setupEventListener();
 
-        Intent venmoIntent = new VenmoActivity().work();
-        startActivityForResult(venmoIntent, 0);
     }
 
     private void initHub() {
-        TextView hub_status = (TextView)findViewById(R.id.hub_status);
         hub = Hub.getInstance();
         if (!hub.init(this)) {
-            hub_status.setText("Hub could not be initialized");
             finish();
             return;
         }
-        hub_status.setText("Hub initialized");
         hub.setLockingPolicy(Hub.LockingPolicy.NONE);
         hub.setMyoAttachAllowance(2);
         return;
@@ -59,23 +51,13 @@ public class Home extends ActionBarActivity {
     }
 
     public void sendVenmo(View view) {
-        //Intent venmoIntent = VenmoLibrary.openVenmoPayment("2265", "MHacks", "145434160922624933", "1.00", "MHacks", "pay");
-        Intent venmoIntent = new VenmoActivity().transfer("145434160922624933", 0.01);
+        Intent venmoIntent = new VenmoActivity().transfer(MyoListener.payer_access_token, MyoListener.payee_access_token, 0.01);
         startActivityForResult(venmoIntent, 0);// REQUEST_CODE_VENMO_APP_SWITCH);
     }
 
     private void setupEventListener() {
         myoListener = new MyoListener(this);
         hub.addListener(myoListener);
-
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent){
-        Uri uri = intent.getData();
-        if (uri != null && uri.toString().startsWith("myo://oauthresponse")){
-            VenmoActivity.access_token = uri.getQueryParameter("access_token");
-        }
     }
 
     @Override
