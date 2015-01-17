@@ -18,11 +18,16 @@ import com.thalmic.myo.Pose;
 public class MyoListener extends AbstractDeviceListener {
     private Activity activity;
     private TextView connection_status;
-    //private final String name = "Katelyn";
-    private final String name = "Sean";
-    //private final String mac = "DF:34:F2:52:47:20"; //Katelyn
-    private final String mac = "E6:35:8E:89:45:58"; //Sean
     private Firebase myFirebaseRef;
+
+    //private final String name = "Katelyn";            //Katelyn
+    private final String name = "Sean";                 //Sean
+
+    //private final String mac = "DF:34:F2:52:47:20";   //Katelyn
+    private final String mac = "E6:35:8E:89:45:58";     //Sean
+
+    public static String payee_access_token = "apurVUx4wRTdBWz9HJ9sS4uTnpKHSVQH"; //Katelyn (actually Michael's Venmo)
+    public static String payer_access_token = "8V3FreePyReTgcpuPB4x4KNPcGJ63qZd";   //Sean (actually Aaron's Venmo)
 
     private boolean katelynActive;
     private boolean seanActive;
