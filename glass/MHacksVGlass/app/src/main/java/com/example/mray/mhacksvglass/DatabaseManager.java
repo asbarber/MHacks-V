@@ -1,6 +1,7 @@
 package com.example.mray.mhacksvglass;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -31,6 +32,8 @@ public class DatabaseManager {
     }
 
     private void startGlass() {
+        Intent intent = new Intent(activity, VoiceMenuActivity.class);
+        activity.startActivity(intent);
     }
 
 }
