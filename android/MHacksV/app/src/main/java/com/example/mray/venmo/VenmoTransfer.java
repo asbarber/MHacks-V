@@ -1,5 +1,6 @@
 package com.example.mray.venmo;
 
+import android.content.Context;
 import android.content.Intent;
 
 /**
@@ -8,15 +9,20 @@ import android.content.Intent;
 public class VenmoTransfer {
 
     /**
-     * Creates an intent to start a venmo transfer.
+     * Starts the intent for a Venmo transfer.
+     *
+     * @param c context to start the activity
      * @param user_id phone number / email / id of the other end of the transaction
      * @param amount value for the transaction
      * @param pay true if the caller is paying money, false if the caller is receiving money
-     * @return Intent to call to start the transfer, NULL if no venmo app or unable to process
      */
-    public Intent createIntent(String user_id, double amount, boolean pay){
+    public void startTransfer(Context c, String user_id, double amount, boolean pay){
+        if (!VenmoLibrary.isVenmoInstalled(c)){
+            return;
+        }
+
         String payType = pay ? "pay" : "charge";
-        return VenmoLibrary.openVenmoPayment("2265", "MHacks", user_id, Double.toString(amount), "MHacks", payType);
-        //startActivityForResult(venmoIntent, 0);// REQUEST_CODE_VENMO_APP_SWITCH);
+        Intent intent = VenmoLibrary.openVenmoPayment("2265", "MHacks", user_id, Double.toString(amount), "MHacks", payType);
+        c.startActivity(intent);
     }
 }
