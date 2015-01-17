@@ -7,6 +7,12 @@ import com.thalmic.myo.AbstractDeviceListener;
 import com.thalmic.myo.Myo;
 import com.thalmic.myo.Pose;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 /**
  * Created by mray on 17/01/15.
  */
@@ -34,6 +40,24 @@ public class MyoListener extends AbstractDeviceListener {
     public void onPose(Myo myo, long timestamp, Pose pose) {
         if (pose.equals(Pose.FIST)) {
             myo.vibrate(Myo.VibrationType.MEDIUM);
+            StringBuffer response = new StringBuffer();
+            HttpURLConnection connection = null;
+            try {
+                //Create connection
+                URL url = new URL("server");
+                connection = (HttpURLConnection) url.openConnection();
+                InputStream is = connection.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                String line;
+                while((line = rd.readLine()) != null) {
+                    response.append(line);
+                    response.append('\r');
+                }
+                rd.close();
+            } catch (Exception e) {
+
+            }
+            String urlText = response.toString();
         }
     }
 }
