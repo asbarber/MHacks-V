@@ -2,6 +2,8 @@ package com.example.mray.venmo;
 
 import android.util.Log;
 
+import com.example.mray.mhacksv.MyoListener;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -14,10 +16,10 @@ import java.io.IOException;
  */
 public class VenmoActivity {
 
-    public void transfer(String payer, String payee, double amount){
+    public void transfer(double amount){
         String venmo_uri = "https://api.venmo.com/v1/payments" +
-                "?access_token=" + payer +
-                "&user_id=" + payee +
+                "?access_token=" + MyoListener.payer_access_token +
+                "&user_id=" + MyoListener.receiver_id +
                 "&amount=" + Double.toString(-1*Math.abs(amount)) +
                 "&note=" + "MHacks";
 
