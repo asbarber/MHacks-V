@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.mray.venmo.VenmoActivity;
 import com.example.mray.venmo.VenmoLibrary;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
@@ -54,7 +55,8 @@ public class Home extends ActionBarActivity {
     }
 
     public void sendVenmo(View view) {
-        Intent venmoIntent = VenmoLibrary.openVenmoPayment("2265", "MHacks", "145434160922624933", "1.00", "MHacks", "pay");
+        //Intent venmoIntent = VenmoLibrary.openVenmoPayment("2265", "MHacks", "145434160922624933", "1.00", "MHacks", "pay");
+        Intent venmoIntent = new VenmoActivity().work();
         startActivityForResult(venmoIntent, 0);// REQUEST_CODE_VENMO_APP_SWITCH);
     }
 
