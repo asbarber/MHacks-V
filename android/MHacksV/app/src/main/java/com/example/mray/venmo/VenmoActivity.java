@@ -1,13 +1,7 @@
 package com.example.mray.venmo;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Bundle;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 /**
  * Created by Aaron Barber on 17/01/15.

@@ -7,10 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.mray.venmo.VenmoActivity;
-import com.example.mray.venmo.VenmoLibrary;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
 
@@ -26,19 +24,16 @@ public class Home extends ActionBarActivity {
         initHub();
         setupEventListener();
 
-        Intent venmoIntent = new VenmoActivity().work();
+        Intent venmoIntent = new VenmoActivity().authenticate();
         startActivityForResult(venmoIntent, 0);
     }
 
     private void initHub() {
-        TextView hub_status = (TextView)findViewById(R.id.hub_status);
         hub = Hub.getInstance();
         if (!hub.init(this)) {
-            hub_status.setText("Hub could not be initialized");
             finish();
             return;
         }
-        hub_status.setText("Hub initialized");
         hub.setLockingPolicy(Hub.LockingPolicy.NONE);
         hub.setMyoAttachAllowance(2);
         return;
