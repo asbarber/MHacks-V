@@ -4,9 +4,11 @@
     <string name="app_name">MHacksVGlass</string>
     <string name="title_activity_home">Thank you</string>
     <string name="hello_world">Hello world!</string>
-    <string name="send">Transaction Completed</string>
+    <string name="send">Your transaction is underway</string>
     <string name="amount_prompt">How Much?</string>
     <string name="now">just now</string>
-    <string name="footnote">You sent</string>
+    <string name="footnote">Thank you for using MYOwn Transaction</string>
+    <string name="firstname_lastname">Sean Acker</string>
+    <string name="transaction_type">Handshake Established</string>
 
 </resources>
