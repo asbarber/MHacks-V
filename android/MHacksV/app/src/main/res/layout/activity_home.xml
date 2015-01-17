@@ -38,4 +38,11 @@
         android:text="Connect to Sean's Myo"
         android:id="@+id/myo_2_selector" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendVenmo"
+        android:text="Send Venmo"
+        android:id="@+id/send_venmo" />
+
 </LinearLayout>
