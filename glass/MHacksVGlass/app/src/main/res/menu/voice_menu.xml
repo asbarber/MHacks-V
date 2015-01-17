@@ -25,7 +25,7 @@
             android:title="@string/menu_resume"
             />
 
-            Resume?
+           // Resume?
         <item
             android:id="@+id/menu_butt"
             android:title="@string/menu_butt"
