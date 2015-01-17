@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <!-- Venmo related option -->
@@ -14,10 +14,8 @@
             />
 
         <!-- Banking? -->
-        <item
-            android:id="@+id/menu_banking"
-            android:title="@string/menu_banking"
-            />
+        <!--<item-->
+            <!--android:id="@+id/menu_banking"-->
+            <!--android:title="@string/menu_banking"-->
+            <!--/>-->
     </menu>
-
-</menu>

@@ -15,15 +15,20 @@ public class DatabaseManager {
 
     private Firebase firebaseRef;
     private Activity activity;
+    private int counter;
 
     public DatabaseManager(Activity activity) {
+        counter = 0;
         this.activity = activity;
         firebaseRef = new Firebase("https://mhacksv.firebaseio.com/");
         firebaseRef.child("GlassInit").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                startGlass();
-                firebaseRef.child("GlassInit").setValue(false);
+                if (counter > 0) {
+                    startGlass();
+                    firebaseRef.child("GlassInit").setValue(false);
+                } else
+                    counter++;
             }
 
             @Override
