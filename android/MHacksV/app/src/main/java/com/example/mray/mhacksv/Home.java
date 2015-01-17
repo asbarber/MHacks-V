@@ -1,6 +1,5 @@
 package com.example.mray.mhacksv;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -8,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.mray.venmo.VenmoLibrary;
 import com.thalmic.myo.Hub;
 
 public class Home extends ActionBarActivity {
@@ -19,6 +17,9 @@ public class Home extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //Intent venmoIntent = VenmoLibrary.openVenmoPayment("2265", "MHacks", "145434160922624933", "1.00", "MHacks", "pay");
+       // startActivityForResult(venmoIntent, 0);// REQUEST_CODE_VENMO_APP_SWITCH);
 
         initHub();
         setupEventListener();
@@ -39,10 +40,16 @@ public class Home extends ActionBarActivity {
     }
 
     public void connect1(View view) {
+        for (int i=0; i<hub.getConnectedDevices().size(); i++) {
+            hub.detach(hub.getConnectedDevices().get(i).getMacAddress());
+        }
         hub.attachByMacAddress("DF:34:F2:52:47:20");
     }
 
     public void connect2(View view) {
+        for (int i=0; i<hub.getConnectedDevices().size(); i++) {
+            hub.detach(hub.getConnectedDevices().get(i).getMacAddress());
+        }
         hub.attachByMacAddress("E6:35:8E:89:45:58");
     }
 

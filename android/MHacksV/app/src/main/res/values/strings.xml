@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">MHacksV</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hub_status">Hub Status</string>
+    <string name="connection_status">Connection Status</string>
     <string name="action_settings">Settings</string>
 
 </resources>
