@@ -20,9 +20,6 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent venmoIntent = VenmoLibrary.openVenmoPayment("2265", "MHacks", "145434160922624933", "1.00", "MHacks", "pay");
-        startActivityForResult(venmoIntent, 0);// REQUEST_CODE_VENMO_APP_SWITCH);
-
         initHub();
         setupEventListener();
     }
