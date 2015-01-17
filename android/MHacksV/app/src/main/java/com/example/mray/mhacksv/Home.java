@@ -32,20 +32,15 @@ public class Home extends ActionBarActivity {
         }
         hub_status.setText("Hub initialized");
         hub.setLockingPolicy(Hub.LockingPolicy.NONE);
+        hub.setMyoAttachAllowance(2);
         return;
     }
 
     public void connect1(View view) {
-        for (int i=0; i<hub.getConnectedDevices().size(); i++) {
-            hub.detach(hub.getConnectedDevices().get(i).getMacAddress());
-        }
         hub.attachByMacAddress("DF:34:F2:52:47:20");
     }
 
     public void connect2(View view) {
-        for (int i=0; i<hub.getConnectedDevices().size(); i++) {
-            hub.detach(hub.getConnectedDevices().get(i).getMacAddress());
-        }
         hub.attachByMacAddress("E6:35:8E:89:45:58");
     }
 
