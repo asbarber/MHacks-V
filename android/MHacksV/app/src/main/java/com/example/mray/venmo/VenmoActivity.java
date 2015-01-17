@@ -17,7 +17,7 @@ public class VenmoActivity {
     public static String access_token = "";
 
     public Intent authenticate(){
-        String venmo_uri = "https://api.venmo.com/v1/oauth/authorize?client_id=2265&scope=make_payments&redirect_uri=myo";
+        String venmo_uri = "https://api.venmo.com/v1/oauth/authorize?client_id=2265&scope=make_payments&redirect_uri=myo&response_type=code";
         return new Intent(Intent.ACTION_VIEW, Uri.parse(venmo_uri));
     }
 
