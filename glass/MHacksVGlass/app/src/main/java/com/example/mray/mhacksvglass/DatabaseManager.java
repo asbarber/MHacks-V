@@ -39,8 +39,6 @@ public class DatabaseManager {
     }
 
     private void startGlass() {
-        //Intent intent = new Intent(activity, VoiceMenuActivity.class);
-        //activity.startActivity(intent);
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume" );
         activity.startActivityForResult(intent, 0);
