@@ -78,6 +78,6 @@ public class Home extends ActionBarActivity {
 
     public void send_concur(View view) {
         Concur c = new Concur();
-        c.sendConcurRequest();
+        c.sendToConcur();
     }
 }

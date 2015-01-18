@@ -73,12 +73,18 @@ public class HackerCenter extends AbstractDeviceListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 myFirebaseRef.child("GlassDone").setValue(false);
-                if (myFirebaseRef.child(name).child("Method").equals("menu_payment")) {
-                    String payment = null;
-                    //payment = myFirebaseRef.child(name).child("Payment");
-                    VenmoActivity va = new VenmoActivity();
-                    va.execute(payment);
-                }
+                myFirebaseRef.child("GlassHandle").setValue(false);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) { }
+        });
+        myFirebaseRef.child(name).child("Payment").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String payment = (String)dataSnapshot.getValue();
+                VenmoActivity va = new VenmoActivity();
+                va.execute(payment);
             }
 
             @Override
@@ -107,7 +113,6 @@ public class HackerCenter extends AbstractDeviceListener {
                 public void run() {
                     myFirebaseRef.child(name).child("Mac").setValue(mac);
                     myFirebaseRef.child(name).child("Handshake").setValue(true);
-                    myFirebaseRef.child(name).child("Venmo ID").setValue("0x000000");
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) { }
