@@ -15,13 +15,13 @@
             android:title="@string/menu_network"
             />
 
-        // Banking?
+        // Banking
         <item
             android:id="@+id/menu_banking"
             android:title="@string/menu_banking"
             />
 
-        //Resume?
+        //Concur
         <item
             android:id="@+id/menu_concur"
             android:title="@string/menu_concur"
