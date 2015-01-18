@@ -115,7 +115,7 @@ public class Home extends Activity {
 //        card.setTimestamp(voiceResults.get(0));
         card.setHeading(R.string.firstname_lastname);
         card.setSubheading(R.string.transaction_type);
-        card.setIcon(R.drawable.ic_glass_logo);
+        card.setIcon(R.drawable.MYO_logo);
         return card.getView();
     }
 
