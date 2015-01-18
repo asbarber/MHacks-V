@@ -16,22 +16,14 @@ import java.io.IOException;
  */
 public class Concur {
 
-    private String requestData = "{\n" +
-            "  \"AttendeeTypeID\": \"gWjcKjoNtNnAHBquHboU08B17u1BpiA\",\n" +
-            "  \"Company\": \"Mios\",\n" +
-            "  \"CurrencyCode\": \"USD\",\n" +
-            "  \"FirstName\": \"Sean\",\n" +
-            "  \"LastName\": \"Hacker\",\n" +
-            "  \"MiddleInitial\": \"J\",\n" +
-            "  \"Title\": \"Software Engineer\",\n" +
-            "  \"TotalAmountYTD\": \"200.00\"\n" +
-            "}";
+    private String requestData = "<Attendee><AttendeeTypeID>gWjcKjoNtNnAHBquHboU08B17u1BpiA</AttendeeTypeID><Company>Mios</Company><CurrencyCode>USD</CurrencyCode><FirstName>Sean</FirstName><LastName>Hacker</LastName><MiddleInitial>J</MiddleInitial><Title>Software Engineer</Title></Attendee>";
 
     public void sendConcurRequest() {
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), requestData);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/xml"), requestData);
 
         final Request request = new Request.Builder()
-                .header("Accept", "application/json")
+                .header("Accept", "application/xml")
+//                .header("Content-Type", "application/json")
                 .header("Authentication", "OAuth " + "Posk7nuv/BYzDAMNlFJWHpIMzzk=")
                 .header("User-Agent", "Concur-Android")
                 .url("https://www.concursolutions.com/api/v3.0/expense/attendees")
