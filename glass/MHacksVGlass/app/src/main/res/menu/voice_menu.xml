@@ -7,6 +7,15 @@
             android:id="@+id/menu_venmo"
             android:title="@string/menu_venmo"
             />
+
+
+           <!---->
+                <!--<item>-->
+                <!--android:id="@+id/menu_payment"-->
+                <!--android:title=@string.hello_world"-->
+                <!--/>-->
+
+
         <!-- Networking/LinkedIn Option -->
         <item
             android:id="@+id/menu_network"
@@ -25,12 +34,6 @@
             android:title="@string/menu_resume"
             />
 
-<<<<<<< HEAD
-           // Resume?
-        <item
-            android:id="@+id/menu_butt"
-            android:title="@string/menu_butt"
-        />
-=======
->>>>>>> 5ce0ce208e79eda3f444749a580243a9d7c6fdb0
+
+
     </menu>
