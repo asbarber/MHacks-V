@@ -3,11 +3,14 @@ package com.example.mray.mhacksvglass;
 import android.app.Activity;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by mray on 17/01/15.
@@ -38,10 +41,31 @@ public class DatabaseManager {
         });
     }
 
+
+
     private void startGlass() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume" );
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume");
+
         activity.startActivityForResult(intent, 0);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "How much?");
+
+
+
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            ArrayList<String> voiceResults = getIntent().getExtras()
+                    .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+
+            Log.d("poop", voiceResults.get(0));
+
+        }
+
     }
 
+    private Intent getIntent() {
+        return null;
+    }
 }
+
+
+

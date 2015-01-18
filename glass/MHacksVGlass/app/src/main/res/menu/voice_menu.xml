@@ -9,13 +9,6 @@
             />
 
 
-           <!---->
-                <!--<item>-->
-                <!--android:id="@+id/menu_payment"-->
-                <!--android:title=@string.hello_world"-->
-                <!--/>-->
-
-
         <!-- Networking/LinkedIn Option -->
         <item
             android:id="@+id/menu_network"

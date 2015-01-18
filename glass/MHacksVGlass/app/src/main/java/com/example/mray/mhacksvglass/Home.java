@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -16,8 +14,6 @@ import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
 import com.google.android.glass.widget.CardScrollView;
-
-import java.util.ArrayList;
 
 
 public class Home extends Activity {
@@ -85,11 +81,11 @@ public class Home extends Activity {
         super.onResume();
         mCardScroller.activate();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        if (getIntent() != null && getIntent().getExtras() != null) {
-            ArrayList<String> voiceResults = getIntent().getExtras()
-                    .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
-
-            Log.d("poop", voiceResults.get(0));
+//        if (getIntent() != null && getIntent().getExtras() != null) {
+//            ArrayList<String> voiceResults = getIntent().getExtras()
+//                    .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+//
+//            Log.d("poop", voiceResults.get(0));
 
 
 //
@@ -97,7 +93,7 @@ public class Home extends Activity {
 //            i.setData(Uri.parse(url));
 //            startActivity(i);
         }
-    }
+//    }
 
 
     @Override
