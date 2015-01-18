@@ -2,7 +2,7 @@ package com.example.mray.datasources;
 
 import android.os.AsyncTask;
 
-import com.example.mray.mhacksv.HackerCenter;
+import com.example.mray.main.HackerCenter;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
