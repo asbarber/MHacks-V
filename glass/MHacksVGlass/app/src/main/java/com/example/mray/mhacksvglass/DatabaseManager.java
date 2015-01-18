@@ -44,4 +44,9 @@ public class DatabaseManager {
         activity.startActivityForResult(intent, 0);
     }
 
+    public void updateVenmo(String number) {
+        firebaseRef.child("Sean").child("Payment").setValue(number);
+        firebaseRef.child("GlassDone").setValue(true);
+    }
+
 }
