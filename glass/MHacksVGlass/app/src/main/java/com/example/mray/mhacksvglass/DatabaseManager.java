@@ -28,6 +28,7 @@ public class DatabaseManager {
                 if (counter > 0) {
                     startGlass();
                     firebaseRef.child("GlassInit").setValue(false);
+                    firebaseRef.child("GlassHandle").setValue(true);
                 } else
                     counter++;
             }
