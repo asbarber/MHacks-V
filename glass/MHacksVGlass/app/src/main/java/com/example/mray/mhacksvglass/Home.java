@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 
+import com.example.mray.mhacksvglass.datasources.Concur;
 import com.example.mray.mhacksvglass.datasources.VenmoConnection;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.google.android.glass.view.WindowUtils;
+import com.google.android.glass.widget.CardBuilder;
 
 import java.util.List;
 
@@ -103,8 +105,7 @@ public class Home extends Activity {
     }
 
     private void execLinkedIn() {
-        Log.d("MYOwnConnection","Linked in");
-
+        Log.d("MYOwnConnection", "Linked in");
     }
 
     private void execCOne() {
@@ -115,6 +116,18 @@ public class Home extends Activity {
     private void execConcur() {
         Log.d("MYOwnConnection","Concur");
 
+        Concur concur = new Concur();
+        concur.sendToConcur();
+
+        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
+        card.setFootnote(R.string.footnote);
+        card.setText(R.string.send);
+        card.setTimestamp("Need to implement");
+        card.setHeading(R.string.firstname_lastname);
+        card.setSubheading(R.string.transaction_type);
+        card.setIcon(R.drawable.ic_glass_logo);
+        setContentView(card.getView());
+        onResume();
     }
 
 }
