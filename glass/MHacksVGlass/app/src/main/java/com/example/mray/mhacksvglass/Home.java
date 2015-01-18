@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.example.mray.mhacksvglass.datasources.BankInfo;
 import com.example.mray.mhacksvglass.datasources.CareerInfo;
@@ -26,6 +27,7 @@ public class Home extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().requestFeature(WindowUtils.FEATURE_VOICE_COMMANDS);
         setContentView(R.layout.activity_venmo);
         Firebase.setAndroidContext(this);
@@ -80,7 +82,7 @@ public class Home extends Activity {
 
     private void startGlass() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume" );
+        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nConcur" );
         startActivityForResult(intent, SPEECH_REQUEST);
     }
 
@@ -91,10 +93,9 @@ public class Home extends Activity {
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
+            Log.d("speech", results.get(0));
             if (spokenText.toLowerCase().trim().contains("send money")) {
-                Log.d("MYOwnConnection","Venmo connection");
-                VenmoConnection vc = new VenmoConnection();
-                vc.execute(spokenText.replace("send money","").trim());
+                execVenmo(spokenText);
             } else if (spokenText.toLowerCase().trim().contains("network")) {
                 execLinkedIn();
             } else if (spokenText.toLowerCase().trim().contains("financial")) {
@@ -104,6 +105,25 @@ public class Home extends Activity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void execVenmo(String spokenText){
+        Log.d("MYOwnConnection","Venmo connection");
+        try {
+            VenmoConnection vc = new VenmoConnection();
+            vc.execute(spokenText.replace("send money", "").trim());
+        }
+        catch (Exception e){
+        }
+
+        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
+        card.setFootnote(R.string.footnote);
+
+        card.setText("Transaction processing.");
+        card.setHeading("Venmo Transaction");
+        card.setIcon(R.drawable.ic_glass_logo);
+        setContentView(card.getView());
+        onResume();
     }
 
     private void execLinkedIn() {
@@ -118,9 +138,7 @@ public class Home extends Activity {
         card.setFootnote(R.string.footnote);
 
         card.setText(ci.getHeadline());
-//          card.setTimestamp(voiceResults.get(0));
         card.setHeading(ci.getFirstName() + " " + ci.getLastName());
-//            card.setSubheading(ci.getHeadline());
         card.setIcon(R.drawable.ic_glass_logo);
         setContentView(card.getView());
         onResume();
@@ -137,7 +155,7 @@ public class Home extends Activity {
         card.setText("Upcoming Payment: " + info.getUpcomingPayment());
         //card.setTimestamp(voiceResults.get(0));
         card.setHeading("Balance: " + info.getBalance());
-        card.setSubheading("Recent Transition: " + info.getRecentTransition());
+        card.setSubheading("Recent Transaction: " + info.getRecentTransition());
         card.setIcon(R.drawable.ic_glass_logo);
 
         setContentView(card.getView());
@@ -153,10 +171,10 @@ public class Home extends Activity {
         CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
         card.setFootnote(R.string.footnote);
         card.setText(R.string.send);
-        card.setTimestamp("Need to implement");
+        card.setTimestamp(R.string.now);
         card.setHeading(R.string.firstname_lastname);
         card.setSubheading(R.string.transaction_type);
-        card.setIcon(R.drawable.ic_glass_logo);
+        card.setIcon(R.drawable.concur_logo);
         setContentView(card.getView());
         onResume();
     }
@@ -177,30 +195,4 @@ public class Home extends Activity {
 //    }
 
 
-//    // Card for Banking
-//    private View buildView() {
-//        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
-//        card.setFootnote(R.string.footnote);
-//
-//        card.setText(R.string.send);
-////        card.setTimestamp(voiceResults.get(0));
-//        card.setHeading(R.string.firstname_lastname);
-//        card.setSubheading(R.string.transaction_type);
-//        card.setIcon(R.drawable.ic_glass_logo);
-//        return card.getView();
-//    }
-//
-//
-//
-//    // Card for Networking
-//    private View buildView() {
-//        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
-//        card.setFootnote(R.string.footnote);
-//
-//        card.setText(R.string.send);
-////        card.setTimestamp(voiceResults.get(0));
-//        card.setHeading(R.string.firstname_lastname);
-//        card.setSubheading(R.string.transaction_type);
-//        card.setIcon(R.drawable.ic_glass_logo);
-//        return card.getView();
-//    }
+

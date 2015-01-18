@@ -3,18 +3,17 @@
 
     <string name="app_name">MHacksVGlass</string>
     <string name="title_activity_home">Thank you</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="send">Your transaction is underway</string>
+    <string name="send">Attendee Connected</string>
     <string name="amount_prompt">How Much?</string>
     <string name="now">just now</string>
     <string name="footnote">Thank you for using MYOwn Transaction</string>
-    <string name="firstname_lastname">Sean Acker</string>
+    <string name="firstname_lastname">Dan Smith</string>
     <string name="transaction_type">Handshake Established</string>
+
     // Voice menu values    <string name="menu_banking">Financial</string>
     <string name="menu_network">Network</string>
     <string name="menu_venmo">Send Money</string>
     <string name="menu_concur">Concur</string>
-    <string name="menu_butt">poop hole</string>
     <string name="title_activity_venmo">VenmoActivity</string>
     <string name="action_settings">Settings</string>
 
