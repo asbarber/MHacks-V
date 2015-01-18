@@ -49,6 +49,10 @@ public class Home extends ActionBarActivity {
         hub.attachByMacAddress("E6:35:8E:89:45:58");
     }
 
+    public void glass(View view) {
+        hackerCenter.triggerGlass();
+    }
+
     private void setupEventListener() {
         hackerCenter = new HackerCenter(this);
         hub.addListener(hackerCenter);
