@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mray.venmo.C1Activity;
 import com.example.mray.venmo.VenmoActivity;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
@@ -88,6 +89,7 @@ public class Home extends ActionBarActivity {
 
         @Override
         protected Void doInBackground(Void...params) {
+            C1Activity c1 = new C1Activity();
             VenmoActivity vm = new VenmoActivity();
             vm.transfer(0.01);
             return null;
