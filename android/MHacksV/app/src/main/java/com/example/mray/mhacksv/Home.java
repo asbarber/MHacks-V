@@ -75,4 +75,9 @@ public class Home extends ActionBarActivity {
         hub.removeListener(hackerCenter);
         super.onDestroy();
     }
+
+    public void send_concur(View view) {
+        Concur c = new Concur();
+        c.sendConcurRequest();
+    }
 }

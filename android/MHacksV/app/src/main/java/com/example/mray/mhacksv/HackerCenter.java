@@ -3,6 +3,7 @@ package com.example.mray.mhacksv;
 import android.app.Activity;
 import android.widget.TextView;
 
+import com.example.mray.venmo.VenmoActivity;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -14,7 +15,7 @@ import com.thalmic.myo.Pose;
 /**
  * Created by mray on 17/01/15.
  */
-public class MyoListener extends AbstractDeviceListener {
+public class HackerCenter extends AbstractDeviceListener {
     private Activity activity;
     private TextView connection_status;
     private Firebase myFirebaseRef;
@@ -34,8 +35,6 @@ public class MyoListener extends AbstractDeviceListener {
     private boolean katelynActive;
     private boolean seanActive;
 
-    private String payment;
-
     private void detHandshake() {
         if (seanActive && katelynActive) {
             myFirebaseRef.child("GlassInit").setValue(true);
@@ -44,7 +43,7 @@ public class MyoListener extends AbstractDeviceListener {
         }
     }
 
-    public MyoListener(Activity activity) {
+    public HackerCenter(Activity activity) {
         this.activity = activity;
         this.connection_status = (TextView) activity.findViewById(R.id.connection_status);
         katelynActive = false;
@@ -75,7 +74,10 @@ public class MyoListener extends AbstractDeviceListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 myFirebaseRef.child("GlassDone").setValue(false);
                 if (myFirebaseRef.child(name).child("Method").equals("menu_payment")) {
+                    String payment = null;
                     //payment = myFirebaseRef.child(name).child("Payment");
+                    VenmoActivity va = new VenmoActivity();
+                    va.execute(payment);
                 }
             }
 
@@ -94,8 +96,6 @@ public class MyoListener extends AbstractDeviceListener {
     public void onDisconnect(Myo myo, long timestamp) {
         connection_status.setText("Disconnected from: " + myo.getName() + " at " + timestamp);
     }
-
-    public String getPayment() { return payment; }
 
     @Override
     public void onPose(Myo myo, long timestamp, Pose pose) {

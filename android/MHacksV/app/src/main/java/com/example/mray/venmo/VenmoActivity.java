@@ -1,9 +1,8 @@
 package com.example.mray.venmo;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.example.mray.mhacksv.MyoListener;
+import com.example.mray.mhacksv.HackerCenter;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,12 +18,10 @@ public class VenmoActivity extends AsyncTask<String, Void, Void> {
 
     public void transfer(String amount){
         String venmo_uri = "https://api.venmo.com/v1/payments" +
-                "?access_token=" + MyoListener.payer_access_token +
-                "&user_id=" + MyoListener.receiver_id +
+                "?access_token=" + HackerCenter.payer_access_token +
+                "&user_id=" + HackerCenter.receiver_id +
                 "&amount=" + amount +
                 "&note=" + "MHacks";
-
-        Log.d("poop",venmo_uri);
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost post = new HttpPost(venmo_uri);

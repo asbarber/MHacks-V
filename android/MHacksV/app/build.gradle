@@ -35,7 +35,7 @@ dependencies {
 dependencies {
     repositories {
         maven {
-            url '/home/Mine/AndroidStudioProjects/MHacks-V/android/myo-android-sdk-0.10.0/myorepository'
+            url '/home/mray/Documents/MHacks/MHacks-V/android/myo-android-sdk-0.10.0/myorepository'
         }
     }
 
