@@ -1,122 +1,111 @@
 package com.example.mray.mhacksvglass;
 
 import android.app.Activity;
-import android.content.Context;
-import android.media.AudioManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.AdapterView;
+import android.speech.RecognizerIntent;
+import android.util.Log;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.google.android.glass.media.Sounds;
-import com.google.android.glass.widget.CardBuilder;
-import com.google.android.glass.widget.CardScrollAdapter;
-import com.google.android.glass.widget.CardScrollView;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.google.android.glass.view.WindowUtils;
+
+import java.util.List;
 
 
 public class Home extends Activity {
 
-    /**
-     * {@link CardScrollView} to use as the main content view.
-     */
-    private CardScrollView mCardScroller;
-
-    private View mView;
-
+    private Firebase firebaseRef;
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
-        mView = buildView();
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-
-        mCardScroller = new CardScrollView(this);
-        mCardScroller.setAdapter(new CardScrollAdapter() {
-            @Override
-            public int getCount() {
-                return 1;
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return mView;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                return mView;
-            }
-
-            @Override
-            public int getPosition(Object item) {
-                if (mView.equals(item)) {
-                    return 0;
-                }
-                return AdapterView.INVALID_POSITION;
-            }
-        });
-        // Handle the TAP event.
-        mCardScroller.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Plays disallowed sound to indicate that TAP actions are not supported.
-                AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                am.playSoundEffect(Sounds.DISALLOWED);
-            }
-        });
-        setContentView(mCardScroller);
+        getWindow().requestFeature(WindowUtils.FEATURE_VOICE_COMMANDS);
+        setContentView(R.layout.activity_venmo);
         Firebase.setAndroidContext(this);
-        DatabaseManager db = new DatabaseManager(this);
+        firebaseRef = new Firebase("https://mhacksv.firebaseio.com/");
+        firebaseRef.child("GlassInit").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                startGlass();
+                firebaseRef.child("GlassInit").setValue(false);
+            }
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) { }
+        });
 
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mCardScroller.activate();
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-//        if (getIntent() != null && getIntent().getExtras() != null) {
-//            ArrayList<String> voiceResults = getIntent().getExtras()
-//                    .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+//    @Override
+//    public boolean onCreatePanelMenu(int featureId, Menu menu) {
+//        if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS) {
+//            getMenuInflater().inflate(R.menu.voice_menu, menu);
+//            return true;
+//        }
+//        return super.onCreatePanelMenu(featureId, menu);
+//    }
 //
-//            Log.d("poop", voiceResults.get(0));
-
-
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.voice_menu, menu);
+//        return true;
+//    }
 //
-//            Intent i = new Intent(Intent.ACTION_VIEW);
-//            i.setData(Uri.parse(url));
-//            startActivity(i);
-        }
+//    @Override
+//    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+//        if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS) {
+//            switch (item.getItemId()) {
+//                case R.id.menu_venmo:
+//                   // displaySpeechRecognizer();
+//                    break;
+//                case R.id.menu_network:
+//                    // handle top-level cats menu item
+//                    break;
+//                default:
+//                    return true;
+//            }
+//            return true;
+//        }
+//        return super.onMenuItemSelected(featureId, item);
 //    }
 
+    private static final int SPEECH_REQUEST = 0;
+
+    private void startGlass() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume" );
+        startActivityForResult(intent, SPEECH_REQUEST);
+    }
 
     @Override
-    protected void onPause() {
-        mCardScroller.deactivate();
-        super.onPause();
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        Log.d("poo", "result");
+        if (requestCode == SPEECH_REQUEST && resultCode == RESULT_OK) {
+            List<String> results = data.getStringArrayListExtra(
+                    RecognizerIntent.EXTRA_RESULTS);
+            String spokenText = results.get(0);
+            Log.d("poop", spokenText);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
-    /**
-     * Builds a Glass styled "Hello World!" view using the {@link CardBuilder} class.
-     */
+}
 
-    // Card for Venmo
-    private View buildView() {
-        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
-        card.setFootnote(R.string.footnote);
-
-        card.setText(R.string.send);
-//        card.setTimestamp(voiceResults.get(0));
-        card.setHeading(R.string.firstname_lastname);
-        card.setSubheading(R.string.transaction_type);
-        card.setIcon(R.drawable.MYO_logo);
-        return card.getView();
-    }
+//    // Card for Venmo
+//    private View buildView() {
+//        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
+//        card.setFootnote(R.string.footnote);
+//
+//        card.setText(R.string.send);
+////        card.setTimestamp(voiceResults.get(0));
+//        card.setHeading(R.string.firstname_lastname);
+//        card.setSubheading(R.string.transaction_type);
+//        card.setIcon(R.drawable.myo_logo);
+//        return card.getView();
+//    }
 
 
 //    // Card for Banking
@@ -146,5 +135,3 @@ public class Home extends Activity {
 //        card.setIcon(R.drawable.ic_glass_logo);
 //        return card.getView();
 //    }
-
-}
