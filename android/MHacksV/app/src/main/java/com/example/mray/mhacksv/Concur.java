@@ -18,33 +18,52 @@ public class Concur {
 
     private String requestData = "<Attendee><AttendeeTypeID>gWjcKjoNtNnAHBquHboU08B17u1BpiA</AttendeeTypeID><Company>Mios</Company><CurrencyCode>USD</CurrencyCode><FirstName>Sean</FirstName><LastName>Hacker</LastName><MiddleInitial>J</MiddleInitial><Title>Software Engineer</Title></Attendee>";
 
-    public void sendConcurRequest() {
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/xml"), requestData);
+    public void sendToConcur() {
+        String body = "{\n" +
+                "\n" +
+                "  \"AttendeeTypeID\": \"gWjcKjoNtNnAHBquHboU08B17u1BpiA\",\n" +
+                "\n" +
+                "  \"Company\": \"Mios\",\n" +
+                "\n" +
+                "  \"CurrencyCode\": \"USD\",\n" +
+                "\n" +
+                "  \"FirstName\": \"Sean\",\n" +
+                "\n" +
+                "  \"LastName\": \"Hacker\",\n" +
+                "\n" +
+                "  \"MiddleInitial\": \"J\",\n" +
+                "\n" +
+                "  \"Title\": \"Software Engineer\",\n" +
+                "\n" +
+                "  \"TotalAmountYTD\": \"200.00\"\n" +
+                "\n" +
+                "}";
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), body);
 
         final Request request = new Request.Builder()
-                .header("Accept", "application/xml")
-//                .header("Content-Type", "application/json")
-                .header("Authentication", "OAuth " + "Posk7nuv/BYzDAMNlFJWHpIMzzk=")
-                .header("User-Agent", "Concur-Android")
+                .header("Accept", "application/json")
+                .header("Authorization", "OAuth " + "Posk7nuv/BYzDAMNlFJWHpIMzzk=")
+                .header("Content-Type", "application/json")
+                .header("User-Agent", "Concur-Android-Mios")
                 .url("https://www.concursolutions.com/api/v3.0/expense/attendees")
                 .post(requestBody)
                 .build();
 
-            OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = new OkHttpClient();
 
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Request request, IOException e) {
-                    Log.d("FOO", "Concur request failed: " + e.toString());
-                }
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                Log.d("CONCUR", "Concur fail: " + e.toString());
+            }
 
-                @Override
-                public void onResponse(Response response) throws IOException {
-                    String resultBody = response.body().string();
+            @Override
+            public void onResponse(Response response) throws IOException {
+                String resultBody = response.body().string();
 
-                    Log.d("FOO", "Concur result = " + resultBody);
-                }
-            });
+                Log.d("CONCUR", "Concur success: " + resultBody);
+            }
+        });
     }
-
 }
