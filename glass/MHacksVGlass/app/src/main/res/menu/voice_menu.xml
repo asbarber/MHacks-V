@@ -23,8 +23,8 @@
 
         //Resume?
         <item
-            android:id="@+id/menu_resume"
-            android:title="@string/menu_resume"
+            android:id="@+id/menu_concur"
+            android:title="@string/menu_concur"
             />
 
 

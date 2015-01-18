@@ -75,7 +75,7 @@ public class Home extends Activity {
 
     private void startGlass() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume" );
+        intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nConcur" );
         startActivityForResult(intent, SPEECH_REQUEST);
     }
 

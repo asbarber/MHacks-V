@@ -13,7 +13,7 @@
     // Voice menu values    <string name="menu_banking">Financial</string>
     <string name="menu_network">Network</string>
     <string name="menu_venmo">Send Money</string>
-    <string name="menu_resume">Resume</string>
+    <string name="menu_concur">Concur</string>
     <string name="menu_butt">poop hole</string>
     <string name="title_activity_venmo">VenmoActivity</string>
     <string name="action_settings">Settings</string>
