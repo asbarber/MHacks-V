@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 
+import com.example.mray.mhacksvglass.datasources.CareerInfo;
 import com.example.mray.mhacksvglass.datasources.VenmoConnection;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.google.android.glass.view.WindowUtils;
+import com.google.android.glass.widget.CardBuilder;
 
 import java.util.List;
 
@@ -105,7 +107,23 @@ public class Home extends Activity {
     private void execLinkedIn() {
         Log.d("MYOwnConnection","Linked in");
 
-    }
+        //LinkedInConnection lic = new LinkedInConnection();
+        //CareerInfo ci = lic.execute();
+
+        CareerInfo ci = new CareerInfo("Katelyn","Dunaski","Michigan State University, Applied Engineering Sciences","url");
+
+            CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
+            card.setFootnote(R.string.footnote);
+
+            card.setText(ci.getHeadline());
+//          card.setTimestamp(voiceResults.get(0));
+            card.setHeading(ci.getFirstName() + " " + ci.getLastName());
+//            card.setSubheading(ci.getHeadline());
+            card.setIcon(R.drawable.ic_glass_logo);
+            setContentView(card.getView());
+            onResume();
+        }
+
 
     private void execCOne() {
         Log.d("MYOwnConnection","COne");
@@ -145,18 +163,7 @@ public class Home extends Activity {
 //        card.setIcon(R.drawable.ic_glass_logo);
 //        return card.getView();
 //    }
-//
-//
-//
-//    // Card for Networking
-//    private View buildView() {
-//        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.AUTHOR);
-//        card.setFootnote(R.string.footnote);
-//
-//        card.setText(R.string.send);
-////        card.setTimestamp(voiceResults.get(0));
-//        card.setHeading(R.string.firstname_lastname);
-//        card.setSubheading(R.string.transaction_type);
-//        card.setIcon(R.drawable.ic_glass_logo);
-//        return card.getView();
-//    }
+
+
+
+
