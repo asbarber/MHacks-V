@@ -1,5 +1,6 @@
 package com.example.mray.venmo;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.mray.mhacksv.MyoListener;
@@ -14,13 +15,13 @@ import java.io.IOException;
 /**
  * Created by Aaron Barber on 17/01/15.
  */
-public class VenmoActivity {
+public class VenmoActivity extends AsyncTask<String, Void, Void> {
 
-    public void transfer(double amount){
+    public void transfer(String amount){
         String venmo_uri = "https://api.venmo.com/v1/payments" +
                 "?access_token=" + MyoListener.payer_access_token +
                 "&user_id=" + MyoListener.receiver_id +
-                "&amount=" + Double.toString(-1*Math.abs(amount)) +
+                "&amount=" + amount +
                 "&note=" + "MHacks";
 
         Log.d("poop",venmo_uri);
@@ -33,5 +34,11 @@ public class VenmoActivity {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    protected Void doInBackground(String... params) {
+        transfer(params[0]);
+        return null;
     }
 }

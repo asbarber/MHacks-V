@@ -34,6 +34,8 @@ public class MyoListener extends AbstractDeviceListener {
     private boolean katelynActive;
     private boolean seanActive;
 
+    private String payment;
+
     private void detHandshake() {
         if (seanActive && katelynActive) {
             myFirebaseRef.child("GlassInit").setValue(true);
@@ -68,6 +70,18 @@ public class MyoListener extends AbstractDeviceListener {
             @Override
             public void onCancelled(FirebaseError firebaseError) { }
         });
+        myFirebaseRef.child("GlassDone").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                myFirebaseRef.child("GlassDone").setValue(false);
+                if (myFirebaseRef.child(name).child("Method").equals("menu_payment")) {
+                    payment = myFirebaseRef.child(name).child("Payment");
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) { }
+        });
     }
 
     @Override
@@ -80,6 +94,8 @@ public class MyoListener extends AbstractDeviceListener {
     public void onDisconnect(Myo myo, long timestamp) {
         connection_status.setText("Disconnected from: " + myo.getName() + " at " + timestamp);
     }
+
+    public String getPayment() { return payment; }
 
     @Override
     public void onPose(Myo myo, long timestamp, Pose pose) {
