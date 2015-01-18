@@ -3,7 +3,7 @@ package com.example.mray.mhacksv;
 import android.app.Activity;
 import android.widget.TextView;
 
-import com.example.mray.venmo.VenmoActivity;
+import com.example.mray.datasources.VenmoConnection;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -76,7 +76,7 @@ public class HackerCenter extends AbstractDeviceListener {
                 if (myFirebaseRef.child(name).child("Method").equals("menu_payment")) {
                     String payment = null;
                     //payment = myFirebaseRef.child(name).child("Payment");
-                    VenmoActivity va = new VenmoActivity();
+                    VenmoConnection va = new VenmoConnection();
                     va.execute(payment);
                 }
             }
