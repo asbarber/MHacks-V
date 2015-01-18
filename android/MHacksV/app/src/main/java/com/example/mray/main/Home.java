@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.mray.datasources.Concur;
+import com.example.mray.mhacksv.R;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
 
@@ -75,10 +75,5 @@ public class Home extends ActionBarActivity {
     protected void onDestroy() {
         hub.removeListener(hackerCenter);
         super.onDestroy();
-    }
-
-    public void send_concur(View view) {
-        Concur c = new Concur();
-        c.sendToConcur();
     }
 }

@@ -28,7 +28,6 @@ public class DatabaseManager {
                 if (counter > 0) {
                     startGlass();
                     firebaseRef.child("GlassInit").setValue(false);
-                    firebaseRef.child("GlassHandle").setValue(true);
                 } else
                     counter++;
             }
@@ -42,6 +41,10 @@ public class DatabaseManager {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra( RecognizerIntent.EXTRA_PROMPT, "What kind of transaction?\nSend Money (Venmo)\nNetwork (LinkedIn)\nFinancial (Cap. One)\nResume" );
         activity.startActivityForResult(intent, 0);
+    }
+
+    public void updateVenmo(String number) {
+
     }
 
 }

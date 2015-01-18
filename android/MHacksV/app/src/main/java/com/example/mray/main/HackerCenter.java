@@ -3,7 +3,7 @@ package com.example.mray.main;
 import android.app.Activity;
 import android.widget.TextView;
 
-import com.example.mray.venmo.VenmoActivity;
+import com.example.mray.mhacksv.R;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -26,11 +26,6 @@ public class HackerCenter extends AbstractDeviceListener {
     //private final String mac = "DF:34:F2:52:47:20";   //Katelyn
     private final String mac = "E6:35:8E:89:45:58";     //Sean
 
-    public static final String payer_id = "1599880231982727210";   //Michael/Sean
-    public static final String receiver_id = "1599750746931200618";   //Aaron/Katelyn
-
-    public static final String payer_access_token = "apurVUx4wRTdBWz9HJ9sS4uTnpKHSVQH"; //Michael/Sean
-    public static final String receiver_access_token = "8V3FreePyReTgcpuPB4x4KNPcGJ63qZd";   //Aaron/Katelyn
 
     private boolean katelynActive;
     private boolean seanActive;
@@ -64,27 +59,6 @@ public class HackerCenter extends AbstractDeviceListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 seanActive = (boolean)dataSnapshot.getValue();
                 detHandshake();
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) { }
-        });
-        myFirebaseRef.child("GlassDone").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                myFirebaseRef.child("GlassDone").setValue(false);
-                myFirebaseRef.child("GlassHandle").setValue(false);
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) { }
-        });
-        myFirebaseRef.child(name).child("Payment").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String payment = (String)dataSnapshot.getValue();
-                VenmoActivity va = new VenmoActivity();
-                va.execute(payment);
             }
 
             @Override
