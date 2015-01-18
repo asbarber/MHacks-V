@@ -66,6 +66,10 @@ public class HackerCenter extends AbstractDeviceListener {
         });
     }
 
+    public void triggerGlass() {
+        myFirebaseRef.child("GlassInit").setValue(true);
+    }
+
     @Override
     public void onConnect(Myo myo, long timestamp) {
         connection_status.setText("Connected to: " + myo.getName() + " at " + timestamp);

@@ -1,14 +1,14 @@
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:background="@drawable/myohandshakebw2"
-        tools:context=".Home" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/myohandshakebw2"
+    tools:context=".Home" >
 
     <TextView
         android:id="@+id/connection_status"
@@ -19,22 +19,39 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Connect to Katelyn's Myo"
         android:onClick="connect1"
-        android:id="@+id/myo_1_selector" />
+        android:text="Connect to Katelyn's Myo"
+        android:id="@+id/myo_1_selector"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/mybutton" />
+    <TextView
+        android:text=" "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="connect2"
-        android:text="Connect to Sean's Myo"
-        android:id="@+id/myo_2_selector" />
+        android:text="Connect to Sean's Myo       "
+        android:id="@+id/myo_2_selector"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/mybutton"  />
 
+    <TextView
+        android:text=" "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="send_concur"
-        android:text="Send Concur"
-        android:id="@+id/send_concur" />
+        android:onClick="glass"
+        android:text="Connect Google Glass       "
+        android:id="@+id/glass_selector"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/mybutton"  />
 
 </LinearLayout>
