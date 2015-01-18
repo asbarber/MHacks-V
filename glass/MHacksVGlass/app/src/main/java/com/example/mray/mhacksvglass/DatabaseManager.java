@@ -28,7 +28,6 @@ public class DatabaseManager {
                 if (counter > 0) {
                     startGlass();
                     firebaseRef.child("GlassInit").setValue(false);
-                    firebaseRef.child("GlassHandle").setValue(true);
                 } else
                     counter++;
             }
@@ -45,8 +44,7 @@ public class DatabaseManager {
     }
 
     public void updateVenmo(String number) {
-        firebaseRef.child("Sean").child("Payment").setValue(number);
-        firebaseRef.child("GlassDone").setValue(true);
+
     }
 
 }

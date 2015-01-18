@@ -1,6 +1,8 @@
-package com.example.mray.datasources;
+package com.example.mray.mhacksvglass.datasources;
 
 import android.os.AsyncTask;
+
+import com.example.mray.mhacksvglass.datasources.BankInfo;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

@@ -27,7 +27,6 @@ public class Home extends Activity {
      */
     private CardScrollView mCardScroller;
 
-
     private View mView;
 
     @Override
