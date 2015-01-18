@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 
+import com.example.mray.mhacksvglass.datasources.VenmoConnection;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -82,14 +83,38 @@ public class Home extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
-        Log.d("poo", "result");
         if (requestCode == SPEECH_REQUEST && resultCode == RESULT_OK) {
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
-            Log.d("poop", spokenText);
+            if (spokenText.toLowerCase().trim().contains("send money")) {
+                Log.d("MYOwnConnection","Venmo connection");
+                VenmoConnection vc = new VenmoConnection();
+                vc.execute(spokenText.replace("send money","").trim());
+            } else if (spokenText.toLowerCase().trim().contains("network")) {
+                execLinkedIn();
+            } else if (spokenText.toLowerCase().trim().contains("financial")) {
+                execCOne();
+            } else if (spokenText.toLowerCase().trim().contains("concur")) {
+                execConcur();
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void execLinkedIn() {
+        Log.d("MYOwnConnection","Linked in");
+
+    }
+
+    private void execCOne() {
+        Log.d("MYOwnConnection","COne");
+
+    }
+
+    private void execConcur() {
+        Log.d("MYOwnConnection","Concur");
+
     }
 
 }
