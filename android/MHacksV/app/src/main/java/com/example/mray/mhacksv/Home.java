@@ -1,11 +1,13 @@
 package com.example.mray.mhacksv;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mray.venmo.C1Activity;
 import com.example.mray.venmo.VenmoActivity;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
@@ -50,8 +52,9 @@ public class Home extends ActionBarActivity {
     }
 
     public void sendVenmo(View view) {
-        VenmoActivity task = new VenmoActivity();
-        task.execute(myoListener.getPayment());
+        refresh task = new refresh();
+        task.execute();
+        //startActivityForResult(venmoIntent, 0);
     }
 
     private void setupEventListener() {
@@ -80,5 +83,23 @@ public class Home extends ActionBarActivity {
     protected void onDestroy() {
         hub.removeListener(myoListener);
         super.onDestroy();
+    }
+
+    private class refresh extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void...params) {
+            C1Activity c1 = new C1Activity();
+            VenmoActivity vm = new VenmoActivity();
+            vm.transfer(0.01);
+            return null;
+        }
+        protected void onProgressUpdate(Void...progress) {
+
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+        }
     }
 }
