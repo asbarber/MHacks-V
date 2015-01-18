@@ -1,21 +1,20 @@
 package com.example.mray.datasources;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by Aaron Barber on 17/01/15.
  */
 public class CareerInfo {
-    private static final ArrayList<CareerInfo> initData(){
-        ArrayList<CareerInfo> data = new ArrayList<>();
-
+    private static final List<CareerInfo> initData(){
         CareerInfo Aaron = new CareerInfo("Aaron", "Barber", "University of Michigan, Computer Science", "file1.png");
         CareerInfo Katelyn = new CareerInfo("Katelyn", "Dunaski", "Michigan State University, Applied Engineering Sciences", "file2.png");
         CareerInfo Michael = new CareerInfo("Michael", "Ray", "University of Michigan, Electrical Engineering", "file3.png");
         CareerInfo Sean = new CareerInfo("Sean", "Acker", "University of Michigan, Mechanical Engineering", "file4.png");
 
-        return data;
+        return Arrays.asList(Aaron, Katelyn, Michael, Sean);
     }
 
     public static final List<CareerInfo> Dataset = initData();
