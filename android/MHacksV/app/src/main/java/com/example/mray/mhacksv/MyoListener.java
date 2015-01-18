@@ -75,7 +75,7 @@ public class MyoListener extends AbstractDeviceListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 myFirebaseRef.child("GlassDone").setValue(false);
                 if (myFirebaseRef.child(name).child("Method").equals("menu_payment")) {
-                    payment = myFirebaseRef.child(name).child("Payment");
+                    //payment = myFirebaseRef.child(name).child("Payment");
                 }
             }
 
