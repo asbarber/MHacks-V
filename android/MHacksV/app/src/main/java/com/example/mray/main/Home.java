@@ -1,4 +1,4 @@
-package com.example.mray.mhacksv;
+package com.example.mray.main;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mray.datasources.Concur;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
 

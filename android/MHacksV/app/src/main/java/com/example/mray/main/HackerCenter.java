@@ -1,4 +1,4 @@
-package com.example.mray.mhacksv;
+package com.example.mray.main;
 
 import android.app.Activity;
 import android.widget.TextView;
