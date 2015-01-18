@@ -1,7 +1,6 @@
 package com.example.mray.mhacksv;
 
 import android.app.Activity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -26,15 +25,18 @@ public class MyoListener extends AbstractDeviceListener {
     //private final String mac = "DF:34:F2:52:47:20";   //Katelyn
     private final String mac = "E6:35:8E:89:45:58";     //Sean
 
-    public static String payee_access_token = "apurVUx4wRTdBWz9HJ9sS4uTnpKHSVQH"; //Katelyn (actually Michael's Venmo)
-    public static String payer_access_token = "8V3FreePyReTgcpuPB4x4KNPcGJ63qZd";   //Sean (actually Aaron's Venmo)
+    public static final String payer_id = "1599880231982727210";   //Michael/Sean
+    public static final String receiver_id = "1599750746931200618";   //Aaron/Katelyn
+
+    public static final String payer_access_token = "apurVUx4wRTdBWz9HJ9sS4uTnpKHSVQH"; //Michael/Sean
+    public static final String receiver_access_token = "8V3FreePyReTgcpuPB4x4KNPcGJ63qZd";   //Aaron/Katelyn
 
     private boolean katelynActive;
     private boolean seanActive;
 
     private void detHandshake() {
         if (seanActive && katelynActive) {
-            handshakeOccured();
+            myFirebaseRef.child("GlassInit").setValue(true);
             myFirebaseRef.child("Katelyn").child("Handshake").setValue(false);
             myFirebaseRef.child("Sean").child("Handshake").setValue(false);
         }
@@ -66,10 +68,6 @@ public class MyoListener extends AbstractDeviceListener {
             @Override
             public void onCancelled(FirebaseError firebaseError) { }
         });
-    }
-
-    private void handshakeOccured() {
-        Log.d("poop","HANDSHAKE!!");
     }
 
     @Override

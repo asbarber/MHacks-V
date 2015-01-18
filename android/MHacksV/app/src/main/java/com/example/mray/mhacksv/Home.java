@@ -89,7 +89,7 @@ public class Home extends ActionBarActivity {
         @Override
         protected Void doInBackground(Void...params) {
             VenmoActivity vm = new VenmoActivity();
-            vm.transfer(MyoListener.payer_access_token, MyoListener.payee_access_token, 0.01);
+            vm.transfer(0.01);
             return null;
         }
         protected void onProgressUpdate(Void...progress) {
