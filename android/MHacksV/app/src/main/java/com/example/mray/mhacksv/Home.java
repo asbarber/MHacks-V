@@ -1,20 +1,17 @@
 package com.example.mray.mhacksv;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.mray.venmo.C1Activity;
-import com.example.mray.venmo.VenmoActivity;
 import com.firebase.client.Firebase;
 import com.thalmic.myo.Hub;
 
 public class Home extends ActionBarActivity {
     private Hub hub;
-    private MyoListener myoListener;
+    private HackerCenter hackerCenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +48,9 @@ public class Home extends ActionBarActivity {
         hub.attachByMacAddress("E6:35:8E:89:45:58");
     }
 
-    public void sendVenmo(View view) {
-        refresh task = new refresh();
-        task.execute();
-        //startActivityForResult(venmoIntent, 0);
-    }
-
     private void setupEventListener() {
-        myoListener = new MyoListener(this);
-        hub.addListener(myoListener);
+        hackerCenter = new HackerCenter(this);
+        hub.addListener(hackerCenter);
     }
 
     @Override
@@ -81,25 +72,7 @@ public class Home extends ActionBarActivity {
 
     @Override
     protected void onDestroy() {
-        hub.removeListener(myoListener);
+        hub.removeListener(hackerCenter);
         super.onDestroy();
-    }
-
-    private class refresh extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void...params) {
-            C1Activity c1 = new C1Activity();
-            VenmoActivity vm = new VenmoActivity();
-            vm.transfer(0.01);
-            return null;
-        }
-        protected void onProgressUpdate(Void...progress) {
-
-        }
-        @Override
-        protected void onPostExecute(Void result) {
-
-        }
     }
 }
