@@ -1,5 +1,5 @@
 # MHacks-V
-##MYOwnTransaction: 
+##MYOwnTransaction 
 An application for the MHacks V competition at University of Michigan, Winter 2015. The purpose of the application is to connect with to a human with a physical handshake, and then be able to share data.
 
 ### Use cases
