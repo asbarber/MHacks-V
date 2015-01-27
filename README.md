@@ -23,7 +23,7 @@ MYO bands detect the handshake and send a bluetooth message to notify the Androi
 
 ### Awards Won
 * Best use of Concur or TripIt APIs
-* Most Technically Challenging, sponsered by a16z
+* Most Technically Challenging, sponsored by a16z
 
 ### Additional Information
 * http://challengepost.com/software/myowntransaction
